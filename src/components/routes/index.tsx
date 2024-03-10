@@ -1,6 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-import App from '../../App';
+import App from '@src/App';
+import HomePage from '@src/pages/home';
 
 import { PATH } from './constants/path';
 
@@ -11,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: PATH.posts,
-        element: <h1>posts 페이지11111111</h1>,
+        element: <HomePage />,
       },
       {
         path: PATH.post,
