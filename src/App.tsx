@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import './App.css';
+import { PATH } from './components/routes/constants/path';
 
 function App() {
   return (
@@ -8,7 +9,13 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to='/posts'>포스트 페이지</Link>
+            <Link to={PATH.root}>메인</Link>
+          </li>
+          <li>
+            <Link to={PATH.posts}>전체 포스트</Link>
+          </li>
+          <li>
+            <Link to={PATH.mypage}>마이페이지</Link>
           </li>
         </ul>
       </nav>
