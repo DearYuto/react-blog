@@ -1,9 +1,9 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-import App from '@src/App';
-
 import { PATH } from './constants/path';
-import { HomePage, PostsPage } from '@src/pages';
+
+import App from '@/App';
+import { HomePage, JoinPage, LoginPage, Mypage, PostsPage, WritePage } from '@/pages';
 
 export const router = createBrowserRouter([
   {
@@ -11,12 +11,28 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: PATH.posts,
+        path: PATH.root,
         element: <HomePage />,
       },
       {
-        path: PATH.post,
+        path: PATH.posts,
         element: <PostsPage />,
+      },
+      {
+        path: PATH.write,
+        element: <WritePage />,
+      },
+      {
+        path: PATH.mypage,
+        element: <Mypage />,
+      },
+      {
+        path: PATH.login,
+        element: <LoginPage />,
+      },
+      {
+        path: PATH.join,
+        element: <JoinPage />,
       },
     ],
   },

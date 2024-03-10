@@ -3,10 +3,13 @@ const basePath = {
   posts: '/posts',
   write: '/write',
   mypage: '/mypage',
+  auth: '/auth',
   etc: '*',
 } as const;
 
 export const PATH = {
   ...basePath,
   post: `${basePath.posts}/:id`,
+  login: `${basePath.auth}/login`,
+  join: `${basePath.auth}/join`,
 } as const;
