@@ -3,17 +3,13 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { PATH } from './constants/path';
 
 import App from '@/App';
-import { HomePage, JoinPage, LoginPage, Mypage, PostsPage, WritePage } from '@/pages';
+import { JoinPage, LoginPage, Mypage, PostsPage, WritePage } from '@/pages';
 
 export const router = createBrowserRouter([
   {
     path: PATH.root,
     element: <App />,
     children: [
-      {
-        path: PATH.root,
-        element: <HomePage />,
-      },
       {
         path: PATH.posts,
         element: <PostsPage />,
