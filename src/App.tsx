@@ -10,6 +10,7 @@ function App() {
     <div className="light-theme">
       <Header />
       <Outlet />
+      <div style={{ height: '2000px' }}></div>
       <Footer />
     </div>
   );

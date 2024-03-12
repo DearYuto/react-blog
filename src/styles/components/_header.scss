@@ -3,6 +3,8 @@
 .header {
   height: 64px;
   position: sticky;
+  top: 0;
+  left: 0;
 
   border-bottom: 1px solid $white-100;
   box-shadow: 5px 10px 10px $gray-100;

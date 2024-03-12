@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import '@/styles/components/_header.scss';
-
 import { NAV_ITEMS } from './constants/navItems';
 import { PATH } from '../router/constants/path';
 
