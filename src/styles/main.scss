@@ -1,6 +1,8 @@
-@use './colors';
+@use './abstracts' as *;
+@use 'base';
+@use 'components';
 
 :root {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: colors.$text-color;
+  color: $text-color;
 }

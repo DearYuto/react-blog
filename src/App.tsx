@@ -1,7 +1,5 @@
 import { Outlet } from 'react-router-dom';
 
-import './styles/index.scss';
-
 import Header from './components/header';
 import Footer from './components/footer';
 

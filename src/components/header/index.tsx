@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom';
 
-import './styles/header.scss';
+import '@/styles/components/_header.scss';
 
 import { NAV_ITEMS } from './constants/navItems';
+import { PATH } from '../router/constants/path';
 
 export default function Header() {
   return (
     <header className="header">
-      <h1 className="header__title">유토의 하루</h1>
       <nav className="header__nav">
+        <h1 className="header__title">
+          <Link to={PATH.root}>유토의 하루</Link>
+        </h1>
         <ul className="header__nav--list">
           {NAV_ITEMS.map((nav) => {
             return (
