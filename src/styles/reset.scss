@@ -63,6 +63,11 @@ h4 {
 a:not([class]) {
   text-decoration-skip-ink: auto;
   color: currentColor;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
 }
 
 /* 이미지 관련 작업을 더 쉽게 합니다. */

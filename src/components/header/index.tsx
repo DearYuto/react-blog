@@ -1,20 +1,22 @@
 import { Link } from 'react-router-dom';
 
+import './styles/header.scss';
+
 import { PATH } from '../router/constants/path';
 
 export default function Header() {
   return (
-    <header>
-      <h1>사이드바</h1>
-      <nav>
-        <ul>
-          <li>
+    <header className="header">
+      <h1 className="header__title">유토의 하루</h1>
+      <nav className="header__nav">
+        <ul className="header__nav--list">
+          <li className="header__nav-item">
             <Link to={PATH.root}>메인</Link>
           </li>
-          <li>
-            <Link to={PATH.posts}>전체 포스트</Link>
+          <li className='"header__nav-item"'>
+            <Link to={PATH.posts}>포스트</Link>
           </li>
-          <li>
+          <li className='"header__nav-item"'>
             <Link to={PATH.mypage}>마이페이지</Link>
           </li>
         </ul>
