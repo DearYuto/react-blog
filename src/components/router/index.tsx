@@ -2,14 +2,18 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { PATH } from './constants/path';
 
-import App from '@/App';
 import { JoinPage, LoginPage, Mypage, PostsPage, WritePage } from '@/pages';
+import RootLayout from '@/layout';
 
 export const router = createBrowserRouter([
   {
     path: PATH.root,
-    element: <App />,
+    element: <RootLayout />,
     children: [
+      {
+        path: PATH.root,
+        element: <PostsPage />,
+      },
       {
         path: PATH.posts,
         element: <PostsPage />,
