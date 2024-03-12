@@ -2,10 +2,17 @@
 
 .header {
   height: 64px;
-  background-color: $gray-100;
+  position: sticky;
+
+  border-bottom: 1px solid $white-100;
+  box-shadow: 5px 10px 10px $gray-100;
+  backdrop-filter: blur(10px);
+
+  margin-bottom: 0.5rem;
 
   &__title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    color: $primary-color;
     cursor: pointer;
   }
 
@@ -13,6 +20,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    color: $gray-500;
 
     max-width: 1000px;
     height: 100%;
@@ -22,5 +31,10 @@
   &__nav--list {
     display: flex;
     gap: 1.5rem;
+
+    :hover {
+      font-weight: bold;
+      color: $gray-700;
+    }
   }
 }
