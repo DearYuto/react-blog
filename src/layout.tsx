@@ -9,7 +9,9 @@ export default function RootLayout() {
   return (
     <div className="light-theme">
       <Header />
-      <Outlet />
+      <section className="section">
+        <Outlet />
+      </section>
       <Footer />
     </div>
   );
