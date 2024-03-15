@@ -1,0 +1,9 @@
+.post-menu {
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+
+  &__item--selected {
+    font-weight: bold;
+  }
+}
