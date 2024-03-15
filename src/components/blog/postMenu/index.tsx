@@ -14,7 +14,7 @@ export default function PostMenu() {
         return (
           <li
             onClick={onClickMenuItem(menu.id)}
-            className={isActive === menu.id ? 'post-menu__item--active' : ''}
+            className={`post-menu__item ${isActive === menu.id ? 'post-menu__item--active' : ''}`}
             key={menu.id}
           >
             {menu.title}
