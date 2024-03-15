@@ -1,7 +1,10 @@
 .post-menu {
   display: flex;
   gap: 1rem;
-  cursor: pointer;
+
+  &__item {
+    cursor: pointer;
+  }
 
   &__item--active {
     font-weight: bold;

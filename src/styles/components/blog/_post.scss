@@ -1,4 +1,4 @@
-@use '../abstracts' as *;
+@use '../../abstracts' as *;
 
 .post {
   background-color: $gray-200;
@@ -6,6 +6,7 @@
   margin-top: map-get($margin, 'xxl');
   margin-bottom: map-get($margin, 'xxl');
   overflow: hidden;
+  cursor: pointer;
 
   &__thumbnail {
     width: 100%;
@@ -57,6 +58,10 @@
     border-radius: map-get($border-radius, 'xs');
     padding: map-get($padding, 'xxs') map-get($padding, 'md');
     background: none;
+
+    &--delete {
+      color: $red-500;
+    }
   }
 
   /* **************** FOOTER **************** */
