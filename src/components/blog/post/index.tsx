@@ -1,6 +1,10 @@
-export default function Post() {
+type Props = {
+  onClick: () => void;
+};
+
+export default function Post({ onClick }: Props) {
   return (
-    <article className="post">
+    <article className="post" onClick={onClick}>
       <header>
         <img className="post__thumbnail" src="#" alt="포스트 썸네일"></img>
       </header>

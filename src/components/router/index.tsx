@@ -4,6 +4,7 @@ import { PATH } from './constants/path';
 
 import { JoinPage, LoginPage, Mypage, PostsPage, WritePage } from '@/pages';
 import RootLayout from '@/layout';
+import PostDetailPage from '@/pages/postDetail';
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.posts,
         element: <PostsPage />,
+      },
+      {
+        path: PATH.post,
+        element: <PostDetailPage />,
       },
       {
         path: PATH.write,
