@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { postMenuItem } from './constants/menuItems';
 
 export default function PostMenu() {
-  const [isSeleted, setIsSeleted] = useState(0);
+  const [isActive, setIsActive] = useState(0);
 
   const onClickMenuItem = (id: number) => () => {
-    setIsSeleted(id);
+    setIsActive(id);
   };
 
   return (
@@ -14,7 +14,7 @@ export default function PostMenu() {
         return (
           <li
             onClick={onClickMenuItem(menu.id)}
-            className={isSeleted === menu.id ? 'post-menu__item--selected' : ''}
+            className={isActive === menu.id ? 'post-menu__item--active' : ''}
             key={menu.id}
           >
             {menu.title}
