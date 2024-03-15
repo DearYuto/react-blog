@@ -1,3 +1,9 @@
+import Profile from '@/components/profile';
+
 export default function Mypage() {
-  return <div>Mypage</div>;
+  return (
+    <section>
+      <Profile />
+    </section>
+  );
 }
