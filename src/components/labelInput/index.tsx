@@ -1,7 +1,7 @@
 type Props = {
   label: string;
   labelFor: string;
-  required: boolean;
+  required?: boolean;
   inputType: React.HTMLInputTypeAttribute;
   placeholder?: string;
   ariaInvalid: 'true' | 'false' | undefined;
@@ -11,9 +11,9 @@ export default function LabelInput({
   label,
   inputType,
   labelFor,
-  required,
   ariaInvalid,
   placeholder,
+  required = false,
   ...rest
 }: Props) {
   return (
