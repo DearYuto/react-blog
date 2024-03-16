@@ -1,25 +1,23 @@
+import { forwardRef } from 'react';
+
 type Props = {
   label: string;
   labelFor: string;
-  required?: boolean;
   inputType: React.HTMLInputTypeAttribute;
-  placeholder?: string;
   ariaInvalid: 'true' | 'false' | undefined;
+  required?: boolean;
+  placeholder?: string;
 };
 
-export default function LabelInput({
-  label,
-  inputType,
-  labelFor,
-  ariaInvalid,
-  placeholder,
-  required = false,
-  ...rest
-}: Props) {
+const LabelInput = forwardRef(function LabelInput(
+  { label, inputType, labelFor, ariaInvalid, placeholder, required = false, ...rest }: Props,
+  ref: React.ForwardedRef<HTMLInputElement>
+) {
   return (
     <>
       <label htmlFor={labelFor}>{label}</label>
       <input
+        ref={ref}
         placeholder={placeholder}
         type={inputType}
         required={required}
@@ -30,4 +28,6 @@ export default function LabelInput({
       />
     </>
   );
-}
+});
+
+export default LabelInput;

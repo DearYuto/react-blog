@@ -1,7 +1,9 @@
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
+import { JOIN_FORM } from './constants/joinForm';
+
 import Empty from '@/components/empty';
 import LabelInput from '@/components/labelInput';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { JOIN_FORM } from './constants/joinForm';
 
 interface IFormInput {
   email: string;
@@ -11,7 +13,7 @@ interface IFormInput {
 
 export default function JoinForm() {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { isSubmitting, isSubmitted, errors },
     watch,
@@ -30,78 +32,44 @@ export default function JoinForm() {
       <form className="join__form" onSubmit={handleSubmit(onSubmit)}>
         {JOIN_FORM.map((item) => {
           return (
-            <LabelInput
-              required
-              label={item.name}
+            <Controller
               key={item.id}
-              labelFor={item.name}
-              ariaInvalid={isSubmitted ? (errors.email ? 'true' : 'false') : undefined}
-              placeholder={item.placeholder}
-              inputType={item.type}
-              {...register('email', {
-                required: '이메일을 입력해주세요.',
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: '이메일 형식으로 입력해주세요.',
-                },
-              })}
-            />
+              control={control}
+              name={item.name}
+              rules={
+                item.name === 'rePassword'
+                  ? {
+                      required: item.errorMessage,
+                      validate: validatePasswordConfirm,
+                    }
+                  : {
+                      required: item.errorMessage,
+                      pattern: item.pattern,
+                    }
+              }
+              render={({ field: { onChange, onBlur, ref } }) => {
+                return (
+                  <>
+                    <LabelInput
+                      required
+                      label={item.label}
+                      labelFor={item.name}
+                      ariaInvalid={isSubmitted ? (errors.email ? 'true' : 'false') : undefined}
+                      placeholder={item.placeholder}
+                      inputType={item.type}
+                      {...{ onChange, onBlur, ref }}
+                    />
+                    {errors[item.name] ? (
+                      <small role="alert">{errors[item.name]?.message}</small>
+                    ) : (
+                      <Empty style={{ height: '20px' }} />
+                    )}
+                  </>
+                );
+              }}
+            ></Controller>
           );
         })}
-        <label htmlFor="email">이메일</label>
-        <input
-          required
-          aria-required="true"
-          aria-invalid={'true'}
-          id="email"
-          {...register('email', {
-            required: '이메일을 입력해주세요.',
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-              message: '이메일 형식으로 입력해주세요.',
-            },
-          })}
-        />
-        {errors.email ? (
-          <small role="alert">{errors.email.message}</small>
-        ) : (
-          <Empty style={{ height: '20px' }} />
-        )}
-
-        <label htmlFor="pw">비밀번호</label>
-        <input
-          id="pw"
-          type="password"
-          minLength={8}
-          {...register('password', {
-            required: '비밀번호를 입력해주세요.',
-            pattern: {
-              value: /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[A-Z])(?=.*[0-9]).{8,}$/,
-              message: '8자리 이상 (특수문자, 대문자, 숫자 포함) 입력해주세요.',
-            },
-          })}
-        />
-        {errors.password ? (
-          <small role="alert">{errors.password.message}</small>
-        ) : (
-          <Empty style={{ height: '20px' }} />
-        )}
-
-        <label htmlFor="re-pw">비밀번호 확인</label>
-        <input
-          minLength={8}
-          type="password"
-          id="re-pw"
-          {...register('rePassword', {
-            required: '비밀번호를 확인해주세요.',
-            validate: validatePasswordConfirm,
-          })}
-        />
-        {errors.rePassword ? (
-          <small role="alert">{errors.rePassword.message}</small>
-        ) : (
-          <Empty style={{ height: '20px' }} />
-        )}
 
         <button className="join__button join__button--submit" disabled={isSubmitting} type="submit">
           회원가입
