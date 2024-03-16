@@ -14,8 +14,8 @@ export default function PostsPage() {
           .fill(0)
           .map((_, i) => {
             return (
-              <Link to={`${PATH.posts}/${i}`}>
-                <Post key={i} onClick={onClickPost} />
+              <Link key={i} to={`${PATH.posts}/${i}`}>
+                <Post onClick={onClickPost} />
               </Link>
             );
           }),

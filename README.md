@@ -8,4 +8,5 @@ yarn && yarn dev
 
 #### 기술 스택
 
-React, Typescript, react-router-dom
+React, Typescript, react-router-dom, react-hook-form, scss
+firebase,
