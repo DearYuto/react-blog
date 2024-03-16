@@ -1,0 +1,60 @@
+@use '../../abstracts' as *;
+
+.join {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 500px;
+
+    padding: map-get($padding, 'xl');
+  }
+
+  &__button {
+    border: none;
+    padding: map-get($padding, 'md');
+    border-radius: map-get($border-radius, 'xs');
+    background: $primary-color;
+    color: $white-100;
+
+    &--submit {
+      cursor: pointer;
+      margin-top: map-get($margin, 'xl');
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: darken($primary-color, 2%);
+      }
+    }
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input {
+    outline: none;
+    border: 1px solid $gray-400;
+    border-radius: map-get($border-radius, 'sm');
+    padding: map-get($padding, 'sm');
+  }
+
+  small {
+    color: $red-500;
+  }
+}
