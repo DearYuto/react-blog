@@ -6,6 +6,9 @@
   align-items: center;
   justify-content: center;
 
+  max-width: 500px;
+  margin: 0 auto;
+
   &__header {
     margin-bottom: map-get($margin, 'xxl');
   }
@@ -16,11 +19,16 @@
     justify-content: center;
     align-items: center;
     gap: map-get($gap, 'lg');
+
+    & :last-child {
+      flex: 1;
+    }
   }
 
   &__email,
   &__nickname {
     display: block;
+    flex: 1;
   }
 
   &__img {
@@ -32,12 +40,12 @@
 
   &__footer {
     width: 100%;
+    text-align: right;
   }
 
   &__logout {
-    display: block;
-    position: relative;
-    text-align: right;
+    display: flex;
+    display: inline-block;
     font-size: map-get($font-sizes, 'xs');
   }
 }

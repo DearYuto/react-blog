@@ -10,7 +10,7 @@ import './styles/main.scss';
 export default function RootLayout() {
   return (
     <div className="light-theme">
-      <ToastContainer />
+      <ToastContainer autoClose={2_000} hideProgressBar />
       <Header />
       <section className="section">
         <Outlet />
