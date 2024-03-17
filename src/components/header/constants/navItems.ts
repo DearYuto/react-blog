@@ -5,13 +5,13 @@ export const NAV_ITEMS = [
     id: 0,
     title: '로그인',
     path: PATH.login,
-    role: 'none',
+    role: 'no-user',
   },
   {
     id: 1,
     title: '회원가입',
     path: PATH.join,
-    role: 'none',
+    role: 'no-user',
   },
   {
     id: 2,

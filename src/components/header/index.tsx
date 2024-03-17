@@ -4,7 +4,9 @@ import { NAV_ITEMS } from './constants/navItems';
 import { PATH } from '../router/constants/path';
 
 export default function Header() {
-  const nonMemberMenu = NAV_ITEMS.filter((item) => item.role === 'none');
+  // TODO 유저 정보전역상태 관리해야할 듯
+
+  const nonMemberMenu = NAV_ITEMS.filter((item) => item.role === 'no-user');
 
   return (
     <header className="header">
