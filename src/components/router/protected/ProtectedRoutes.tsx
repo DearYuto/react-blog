@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 type Props = {
@@ -6,10 +7,10 @@ type Props = {
 };
 
 import Spinner from '@/components/loading/Spinner';
-import { useAuth } from '@/hooks/auth/useAuth';
+import { AuthContext } from '@/store/contextAPI/AuthProvider';
 
 export default function ProtectedRoutes({ redirectionPath, role }: Props) {
-  const { isLoading, isLoggedIn } = useAuth();
+  const { isLoading, isLoggedIn } = useContext(AuthContext);
 
   if (isLoading) {
     return <Spinner />;
