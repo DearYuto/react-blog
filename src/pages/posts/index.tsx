@@ -9,17 +9,19 @@ export default function PostsPage() {
   return (
     <div>
       <PostMenu />
-      {[
-        Array(20)
-          .fill(0)
-          .map((_, i) => {
-            return (
-              <Link key={i} to={`${PATH.posts}/${i}`}>
-                <Post onClick={onClickPost} />
-              </Link>
-            );
-          }),
-      ]}
+      <div className="posts__container">
+        {[
+          Array(20)
+            .fill(0)
+            .map((_, i) => {
+              return (
+                <Link key={i} to={`${PATH.posts}/${i}`}>
+                  <Post onClick={onClickPost} />
+                </Link>
+              );
+            }),
+        ]}
+      </div>
     </div>
   );
 }

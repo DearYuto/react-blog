@@ -11,7 +11,6 @@ export default function Profile() {
 
   const onClickLogout = async () => {
     try {
-      const auth = getAuth(firebaseApp);
       await signOut(auth);
       toast.success('👋 또 만나요!');
     } catch (err) {
