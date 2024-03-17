@@ -2,13 +2,34 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 type Props = {
   redirectionPath: string;
-  redirectionCondition: boolean;
+  role: 'user' | 'no-user';
 };
 
-export default function ProtectedRoutes({ redirectionPath, redirectionCondition }: Props) {
-  if (redirectionCondition) {
-    return <Navigate to={redirectionPath} />;
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { firebaseApp } from '@/services/firebase/firebaseConfig';
+import { useEffect, useState } from 'react';
+
+export default function ProtectedRoutes({ redirectionPath, role }: Props) {
+  const auth = getAuth(firebaseApp);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user);
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  return <Outlet />;
+  if (role === 'user') {
+    return isLoggedIn ? <Outlet /> : <Navigate to={redirectionPath} />;
+  }
+
+  return !isLoggedIn ? <Outlet /> : <Navigate to={redirectionPath} />;
 }
