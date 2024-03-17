@@ -1,0 +1,40 @@
+@use '../../abstracts' as *;
+
+.spinner {
+  z-index: 999;
+  width: 100dvw;
+  min-height: 50vh;
+  position: relative;
+
+  &__object {
+    border: 4px solid $gray-200;
+    border-radius: 100%;
+    border-top: 4px solid $primary-color;
+    width: 62px;
+    height: 62px;
+    animation: spin 2s linear infinite;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  &__text {
+    position: absolute;
+    color: $primary-color;
+    width: auto;
+    height: fit-content;
+    padding-top: 120px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+
+    animation: fade 2s alternate infinite;
+  }
+}
