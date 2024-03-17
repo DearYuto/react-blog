@@ -11,7 +11,7 @@ export default function Header() {
       <nav className="header__nav">
         <h1 className="header__title">
           <Link className="header__logo" to={PATH.root}>
-            <img src="blog-logo.svg" alt="logo" />
+            <img src="/blog-logo.svg" alt="logo" />
             <span aria-label="u-log">U-LOG</span>
           </Link>
         </h1>

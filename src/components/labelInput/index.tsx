@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { ChangeEvent, forwardRef } from 'react';
 import styles from './styles/labelInput.module.scss';
 
 type Props = {
@@ -6,12 +6,22 @@ type Props = {
   labelFor: string;
   inputType: React.HTMLInputTypeAttribute;
   ariaInvalid: 'true' | 'false' | undefined;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   placeholder?: string;
 };
 
 const LabelInput = forwardRef(function LabelInput(
-  { label, inputType, labelFor, ariaInvalid, placeholder, required = false, ...rest }: Props,
+  {
+    label,
+    onChange,
+    inputType,
+    labelFor,
+    ariaInvalid,
+    placeholder,
+    required = false,
+    ...rest
+  }: Props,
   ref: React.ForwardedRef<HTMLInputElement>
 ) {
   return (
@@ -23,6 +33,7 @@ const LabelInput = forwardRef(function LabelInput(
         ref={ref}
         placeholder={placeholder}
         type={inputType}
+        onChange={onChange}
         required={required}
         aria-required={required ? 'true' : 'false'}
         aria-invalid={ariaInvalid}

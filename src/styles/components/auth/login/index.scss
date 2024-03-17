@@ -1,0 +1,18 @@
+@use '../../../abstracts/' as *;
+
+.login {
+  &__footer {
+    display: flex;
+    gap: map-get($gap, 'lg');
+
+    &-text {
+      margin-top: map-get($margin, 'xxl');
+      font-size: map-get($font-sizes, 'xs');
+      color: $gray-700;
+    }
+  }
+
+  a:hover {
+    color: darken($gray-700, 20%);
+  }
+}
