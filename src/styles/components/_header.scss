@@ -54,6 +54,8 @@
     display: flex;
     gap: 1.5rem;
 
+    animation: fade 0.2s linear;
+
     :hover {
       font-weight: bold;
       color: $gray-700;
