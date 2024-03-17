@@ -3,8 +3,6 @@
 .post {
   background-color: $gray-200;
   border-radius: map-get($border-radius, 'md');
-  margin-top: map-get($margin, 'xxl');
-  margin-bottom: map-get($margin, 'xxl');
   overflow: hidden;
   cursor: pointer;
 
