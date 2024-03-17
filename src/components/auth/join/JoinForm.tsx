@@ -1,9 +1,13 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import { JOIN_FORM } from './constants/joinForm';
 
 import Empty from '@/components/empty';
 import LabelInput from '@/components/labelInput';
+
+import { firebaseApp } from '@/services/firebase/firebaseConfig';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 interface IFormInput {
   email: string;
@@ -19,11 +23,21 @@ export default function JoinForm() {
     watch,
   } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      const auth = getAuth(firebaseApp);
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
+
+      toast.success('회원이 되신 것을 환영합니다.');
+    } catch (err) {
+      console.error(err);
+      toast.error('이미 존재하는 회원입니다.');
+    }
+  };
 
   const password = watch('password');
   const validatePasswordConfirm = (value: string) => {
-    return value === password || '비밀번호가 일치하지 않습니다.';
+    return value === password || JOIN_FORM[2].errorMessage;
   };
 
   return (

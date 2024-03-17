@@ -1,6 +1,7 @@
 @use '../../abstracts' as *;
 
-.join {
+.join,
+.login {
   display: flex;
   flex-direction: column;
   justify-content: center;

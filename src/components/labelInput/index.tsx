@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import styles from './styles/labelInput.module.scss';
 
 type Props = {
   label: string;
@@ -15,7 +16,9 @@ const LabelInput = forwardRef(function LabelInput(
 ) {
   return (
     <>
-      <label htmlFor={labelFor}>{label}</label>
+      <label className={styles.label} htmlFor={labelFor}>
+        {label}
+      </label>
       <input
         ref={ref}
         placeholder={placeholder}

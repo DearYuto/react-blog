@@ -6,4 +6,5 @@
 
 @forward 'profile/profile';
 
-@forward 'join/form';
+@forward 'auth/auth-form';
+@forward 'auth/login';
