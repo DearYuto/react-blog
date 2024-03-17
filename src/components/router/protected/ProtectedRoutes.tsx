@@ -5,24 +5,11 @@ type Props = {
   role: 'user' | 'no-user';
 };
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { firebaseApp } from '@/services/firebase/firebaseConfig';
-import { useEffect, useState } from 'react';
 import Spinner from '@/components/loading/Spinner';
+import { useAuth } from '@/hooks/auth/useAuth';
 
 export default function ProtectedRoutes({ redirectionPath, role }: Props) {
-  const auth = getAuth(firebaseApp);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsLoggedIn(!!user);
-      setIsLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, [auth]);
+  const { isLoading, isLoggedIn } = useAuth();
 
   if (isLoading) {
     return <Spinner />;
