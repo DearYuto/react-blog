@@ -8,6 +8,7 @@ type Props = {
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { firebaseApp } from '@/services/firebase/firebaseConfig';
 import { useEffect, useState } from 'react';
+import Spinner from '@/components/loading/Spinner';
 
 export default function ProtectedRoutes({ redirectionPath, role }: Props) {
   const auth = getAuth(firebaseApp);
@@ -24,7 +25,7 @@ export default function ProtectedRoutes({ redirectionPath, role }: Props) {
   }, [auth]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (role === 'user') {
