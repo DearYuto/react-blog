@@ -1,8 +1,10 @@
+import { IPost } from '@/api/post/getPosts';
+
 type Props = {
   onClick: () => void;
-};
+} & IPost;
 
-export default function Post({ onClick }: Props) {
+export default function Post({ title, content, author, createAt, onClick }: Props) {
   return (
     <article className="post" onClick={onClick}>
       <header>
@@ -11,18 +13,18 @@ export default function Post({ onClick }: Props) {
 
       <section className="post__section">
         <div className="post__header">
-          <h3 className="post__title">포스트 타이틀</h3>
-          <time className="post__date">포스트 날짜</time>
+          <h3 className="post__title">{title}</h3>
+          <time className="post__date">{createAt}</time>
         </div>
 
         <div className="post__contents">
-          <p className="post__content">포스트 내용</p>
+          <p className="post__content">{content}</p>
         </div>
 
         <div className="post__footer">
           <div className="post__profile">
             <img className="post__profile--img" src="#" alt="프로필 사진" />
-            <span className="post__author">포스트 작성자</span>
+            <span className="post__author">{author}</span>
           </div>
 
           <div className="post__buttons">

@@ -1,6 +1,8 @@
 @use '../../abstracts' as *;
 
 .post {
+  height: 355px;
+  position: relative;
   background-color: $gray-200;
   border-radius: map-get($border-radius, 'md');
   overflow: hidden;
@@ -14,7 +16,11 @@
   }
 
   &__section {
+    width: 100%;
     padding: map-get($padding, 'xl');
+    position: absolute;
+    left: 0;
+    bottom: 0;
   }
 
   /* **************** HEADER **************** */
