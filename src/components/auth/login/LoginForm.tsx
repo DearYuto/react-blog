@@ -66,6 +66,7 @@ export default function LoginForm() {
             <React.Fragment key={loginItem.id}>
               <Empty style={{ height: '20px' }} />
               <LabelInput
+                autoComplete={loginItem.autoComplete}
                 inputType={loginItem.type}
                 ariaInvalid={'true'}
                 labelFor={loginItem.name}

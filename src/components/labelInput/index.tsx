@@ -6,6 +6,7 @@ type Props = {
   labelFor: string;
   inputType: React.HTMLInputTypeAttribute;
   ariaInvalid: 'true' | 'false' | undefined;
+  autoComplete?: React.HTMLInputAutoCompleteAttribute;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   placeholder?: string;
@@ -19,6 +20,7 @@ const LabelInput = forwardRef(function LabelInput(
     labelFor,
     ariaInvalid,
     placeholder,
+    autoComplete,
     required = false,
     ...rest
   }: Props,
@@ -30,6 +32,7 @@ const LabelInput = forwardRef(function LabelInput(
         {label}
       </label>
       <input
+        autoComplete={autoComplete}
         ref={ref}
         placeholder={placeholder}
         type={inputType}

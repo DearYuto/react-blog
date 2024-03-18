@@ -8,6 +8,7 @@ export const LOGIN_FORM: FormInputType[] = [
     type: 'email',
     placeholder: '이메일을 입력해주세요.',
     errorMessage: '이메일 형식으로 입력해주세요.',
+    autoComplete: 'email',
 
     pattern: {
       value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -21,6 +22,7 @@ export const LOGIN_FORM: FormInputType[] = [
     type: 'password',
     placeholder: '비밀번호를 입력해주세요.',
     errorMessage: '비밀번호는 8자리 이상(특수문자, 대문자, 숫자)으로 입력해주세요.',
+    autoComplete: 'current-password',
 
     pattern: {
       value: /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[A-Z])(?=.*[0-9]).{8,}$/,
