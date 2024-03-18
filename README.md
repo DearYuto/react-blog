@@ -22,7 +22,7 @@ yarn && yarn dev
 
 **Frontend.**
 
-<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-round&logo=Typescript&logoColor=white"/> <img src="https://img.shields.io/badge/React-6EC0EB?style=flat-round&logo=React&logoColor=white"/> <br/> <img src="https://img.shields.io/badge/ReactRouterDom-CA4245?style=flat-round&logo=reactrouter&logoColor=white"/> <img src="https://img.shields.io/badge/ReactHookForm-EC5990?style=flat-round&logo=reacthookform&logoColor=white"/> <img src="https://img.shields.io/badge/Sass-CC6699?style=flat-round&logo=Sass&logoColor=white"/> <br/>  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-round&logo=Vite&logoColor=white"/> <img src="https://img.shields.io/badge/Vitest-6E9F18?style=flat-round&logo=Vitest&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-round&logo=Typescript&logoColor=white"/> <img src="https://img.shields.io/badge/React-6EC0EB?style=flat-round&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TanstackQuery-FF4154?style=flat-round&logo=ReactQuery&logoColor=white"/> <br/> <img src="https://img.shields.io/badge/ReactRouterDom-CA4245?style=flat-round&logo=reactrouter&logoColor=white"/> <img src="https://img.shields.io/badge/ReactHookForm-EC5990?style=flat-round&logo=reacthookform&logoColor=white"/> <img src="https://img.shields.io/badge/Sass-CC6699?style=flat-round&logo=Sass&logoColor=white"/> <br/>  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-round&logo=Vite&logoColor=white"/> <img src="https://img.shields.io/badge/Vitest-6E9F18?style=flat-round&logo=Vitest&logoColor=white"/> 
 
 **Backend.**
 
@@ -32,25 +32,28 @@ yarn && yarn dev
 ## 💎 버전 정보
 
 ```
+├── @tanstack/react-query-devtools@5.28.4
+├── @tanstack/react-query@5.28.4
 ├── @testing-library/jest-dom@6.4.2
 ├── @testing-library/react@14.2.1
-├── @types/react-dom@18.2.21 
+├── @types/react-dom@18.2.21
 ├── @types/react-router-dom@5.3.3
-├── @types/react@18.2.64     
+├── @types/react@18.2.64   
 ├── @typescript-eslint/eslint-plugin@7.1.1
 ├── @typescript-eslint/parser@7.1.1
 ├── @vitejs/plugin-react@4.2.1
 ├── eslint-plugin-react-hooks@4.6.0
 ├── eslint-plugin-react-refresh@0.4.5
 ├── eslint@8.57.0
-├── firebase@10.9.0
+├── firebase@10.9.0        
 ├── jsdom@24.0.0
-├── react-dom@18.2.0
-├── react-hook-form@7.51.0    
-├── react-router-dom@6.22.3   
+├── react-dom@18.2.0       
+├── react-hook-form@7.51.0 
+├── react-router-dom@6.22.3
+├── react-toastify@10.0.5  
 ├── react@18.2.0
 ├── sass@1.71.1
-├── typescript@5.4.2
+├── typescript@5.4.2       
 ├── vite@5.1.5
 └── vitest@1.4.0
 ```
