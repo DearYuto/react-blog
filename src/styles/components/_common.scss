@@ -1,0 +1,22 @@
+@use '../abstracts' as *;
+
+@mixin button-style {
+  padding: map-get($padding, 'md');
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button {
+  @include button-style;
+
+  &--primary {
+    @include button-style;
+    background-color: $primary-color;
+    color: $white-100;
+
+    &:hover {
+      background-color: darken($primary-color, 1%);
+    }
+  }
+}

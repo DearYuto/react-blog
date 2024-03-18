@@ -1,5 +1,6 @@
 @forward 'header';
 @forward 'footer';
+@forward 'common';
 
 @forward 'blog/post';
 @forward 'blog/post-menu';
@@ -10,3 +11,5 @@
 @forward 'auth/login';
 
 @forward 'loading/spinner';
+
+@forward 'write/write_form';
