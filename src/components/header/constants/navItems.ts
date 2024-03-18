@@ -19,4 +19,10 @@ export const NAV_ITEMS = [
     path: PATH.mypage,
     role: 'user',
   },
+  {
+    id: 3,
+    title: '새 글 작성',
+    path: PATH.write,
+    role: 'user',
+  },
 ] as const;

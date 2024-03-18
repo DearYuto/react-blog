@@ -1,0 +1,7 @@
+@use '../../abstracts' as *;
+
+.write__form {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($gap, 'md');
+}
