@@ -5,3 +5,11 @@
   flex-direction: column;
   gap: map-get($gap, 'md');
 }
+
+.write__textarea {
+  &--title {
+    &:not([rows]) {
+      min-height: 100%;
+    }
+  }
+}

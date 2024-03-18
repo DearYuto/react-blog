@@ -5,6 +5,7 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s;
+  border-radius: map-get($border-radius, 'xs');
 }
 
 .button {
@@ -19,4 +20,39 @@
       background-color: darken($primary-color, 1%);
     }
   }
+}
+
+@mixin textarea-style {
+  min-width: 100%;
+  height: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: map-get($padding, 'md');
+  font-size: 1.5rem;
+
+  &::placeholder {
+    color: $gray-300;
+  }
+}
+
+.textarea {
+  @include textarea-style;
+
+  &--border {
+    border: 1px solid $gray-300;
+    border-radius: map-get($border-radius, 'md');
+  }
+}
+
+/* 웹 접근성 고려한 숨기기 속성 */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

@@ -70,11 +70,25 @@ export default function WriteForm() {
 
   return (
     <form className="write__form" onSubmit={onSubmit}>
-      <label htmlFor="title">제목</label>
-      <textarea onChange={onChangeInput} id="title" placeholder="제목을 입력해주세요." />
+      <label className="visually-hidden" htmlFor="title">
+        제목
+      </label>
+      <textarea
+        className="textarea write__textarea--title"
+        onChange={onChangeInput}
+        id="title"
+        placeholder="제목을 입력해주세요."
+      />
 
-      <label htmlFor="content">내용</label>
-      <textarea onChange={onChangeInput} id="content" placeholder="내용을 입력해주세요." />
+      <label className="visually-hidden" htmlFor="content">
+        내용
+      </label>
+      <textarea
+        className="textarea write__textarea"
+        onChange={onChangeInput}
+        id="content"
+        placeholder="내용을 입력해주세요."
+      />
 
       <button type="submit" className="button--primary">
         발행
