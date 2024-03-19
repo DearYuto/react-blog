@@ -1,10 +1,14 @@
 import { IPost } from '@/api/post/getPosts';
+import { AuthContext } from '@/store/contextAPI/AuthProvider';
+import { useContext } from 'react';
 
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
 } & IPost;
 
 export default function Post({ title, content, author, createAt, onClick }: Props) {
+  const { user } = useContext(AuthContext);
+
   return (
     <article className="post" onClick={onClick}>
       <header>
@@ -27,10 +31,12 @@ export default function Post({ title, content, author, createAt, onClick }: Prop
             <span className="post__author">{author}</span>
           </div>
 
-          <div className="post__buttons">
-            <button className="post__button post__button--modify">수정</button>
-            <button className="post__button post__button--delete">삭제</button>
-          </div>
+          {author === user?.email && (
+            <div className="post__buttons">
+              <button className="post__button post__button--modify">수정</button>
+              <button className="post__button post__button--delete">삭제</button>
+            </div>
+          )}
         </div>
       </section>
     </article>
