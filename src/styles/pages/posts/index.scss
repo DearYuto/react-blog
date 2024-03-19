@@ -3,6 +3,7 @@
 .posts__container {
   display: grid;
   gap: map-get($gap, 'xxl');
+  grid-template-columns: repeat(1, minmax(200px, 1fr));
   margin-top: map-get($margin, 'xxl');
 
   @include respond-to(tablet) {

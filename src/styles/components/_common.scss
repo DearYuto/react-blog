@@ -1,5 +1,13 @@
 @use '../abstracts' as *;
 
+.notice {
+  width: 100%;
+  text-align: center;
+  grid: none;
+
+  font-weight: 500;
+}
+
 @mixin button-style {
   padding: map-get($padding, 'md');
   border: none;
