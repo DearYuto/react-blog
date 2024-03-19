@@ -2,7 +2,8 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { PATH } from './constants/path';
 
-import { JoinPage, LoginPage, Mypage, PostsPage, WritePage } from '@/pages';
+import { JoinPage, LoginPage, Mypage, WritePage, PostsPage } from '@/pages';
+
 import RootLayout from '@/layout';
 import PostDetailPage from '@/pages/postDetail';
 import ProtectedRoutes from './protected/ProtectedRoutes';
