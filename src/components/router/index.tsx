@@ -1,17 +1,27 @@
+import React, { Suspense } from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { PATH } from './constants/path';
 
-import { JoinPage, LoginPage, Mypage, WritePage, PostsPage } from '@/pages';
-
 import RootLayout from '@/layout';
 import PostDetailPage from '@/pages/postDetail';
-import ProtectedRoutes from './protected/ProtectedRoutes';
+import Spinner from '../loading/Spinner';
+
+const ProtectedRoutes = React.lazy(() => import('./protected/ProtectedRoutes'));
+const JoinPage = React.lazy(() => import('@/pages/auth/join'));
+const LoginPage = React.lazy(() => import('@/pages/auth/login'));
+const Mypage = React.lazy(() => import('@/pages/mypage'));
+const WritePage = React.lazy(() => import('@/pages/write'));
+const PostsPage = React.lazy(() => import('@/pages/posts'));
 
 export const router = createBrowserRouter([
   {
     path: PATH.root,
-    element: <RootLayout />,
+    element: (
+      <Suspense fallback={<Spinner />}>
+        <RootLayout />
+      </Suspense>
+    ),
     children: [
       {
         path: PATH.root,
