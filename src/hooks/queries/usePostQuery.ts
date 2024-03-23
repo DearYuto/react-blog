@@ -8,6 +8,7 @@ export const usePostQuery = (id: string) => {
     queryKey: postKeys.detail(id),
     queryFn: () => getPost(id),
     refetchOnWindowFocus: false,
+    enabled: !!id,
   });
 
   return { post, isFetching };

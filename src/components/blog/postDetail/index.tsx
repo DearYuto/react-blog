@@ -1,25 +1,16 @@
-import { getPost } from '@/api/post/getPost';
-import Spinner from '@/components/loading/Spinner';
-import { DocumentData } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import Spinner from '@/components/loading/Spinner';
+
+import { usePostQuery } from '@/hooks/queries/usePostQuery';
 
 export default function PostDetail() {
   const { id } = useParams();
-  const [post, setPost] = useState<DocumentData | undefined>();
+  const { post, isFetching } = usePostQuery(id!);
 
-  useEffect(() => {
-    if (!id) return;
-
-    let ignore = false;
-    getPost(id).then((result) => {
-      if (!ignore) setPost(result);
-    });
-
-    return () => {
-      ignore = true;
-    };
-  }, [id]);
+  if (isFetching) {
+    return <Spinner />;
+  }
 
   return (
     <>
