@@ -1,6 +1,6 @@
+import { useContext } from 'react';
 import { IPost } from '@/api/post/getPosts';
 import { AuthContext } from '@/store/contextAPI/AuthProvider';
-import { useContext } from 'react';
 
 type Props = {
   onClick?: () => void;
