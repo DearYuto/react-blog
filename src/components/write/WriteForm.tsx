@@ -10,6 +10,7 @@ import { AuthContext } from '@/store/contextAPI/AuthProvider';
 import { PATH } from '../router/constants/path';
 
 export default function WriteForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formInputs, setFormInputs] = useState({
     title: '',
     content: '',
@@ -42,6 +43,7 @@ export default function WriteForm() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     if (isEmptyInput('title')) {
       return toast.error('제목을 입력해주세요.');
@@ -65,6 +67,8 @@ export default function WriteForm() {
       console.error(err);
 
       toast.error('문제가 발생했어요. 잠시 후 다시 시도해주세요.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -90,7 +94,7 @@ export default function WriteForm() {
         placeholder="내용을 입력해주세요."
       />
 
-      <button type="submit" className="button--primary">
+      <button disabled={isSubmitting} type="submit" className="button--primary">
         발행
       </button>
     </form>

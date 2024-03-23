@@ -13,9 +13,9 @@ type Props = {
 export default function Posts({ posts }: Props) {
   return (
     <>
-      {posts.map((post, i) => {
+      {posts.map((post) => {
         return (
-          <Link key={post.id} to={`${PATH.posts}/${i}`}>
+          <Link key={post.id} to={`${PATH.posts}/${post.id}`}>
             <Post
               title={post.title}
               content={post.content}
