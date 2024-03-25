@@ -10,6 +10,7 @@ import { AuthContext } from '@/store/contextAPI/AuthProvider';
 import { PATH } from '../router/constants/path';
 
 import { useMyForm } from '@/hooks/form/useMyForm';
+import { isEmpty } from '@/utils/isEmpty';
 
 export default function WriteForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,29 +23,18 @@ export default function WriteForm() {
 
   const navigate = useNavigate();
 
-  const isEmptyInput = (target: 'title' | 'content') => {
-    if (target === 'title') {
-      return !formInputs.title;
-    }
-
-    if (target === 'content') {
-      return !formInputs.content;
-    }
-
-    return false;
-  };
-
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    if (isEmptyInput('title')) {
+    if (isEmpty(formInputs.title)) {
       return toast.error('제목을 입력해주세요.');
     }
 
-    if (isEmptyInput('content')) {
+    if (isEmpty(formInputs.content)) {
       return toast.error('내용을 입력해주세요.');
     }
+
+    setIsSubmitting(true);
 
     try {
       await addDoc(collection(db, 'posts'), {
