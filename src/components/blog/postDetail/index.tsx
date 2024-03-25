@@ -1,12 +1,16 @@
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Spinner from '@/components/loading/Spinner';
 
 import { usePostQuery } from '@/hooks/queries/usePostQuery';
 
+import { AuthContext } from '@/store/contextAPI/AuthProvider';
+
 export default function PostDetail() {
   const { id } = useParams();
   const { post, isFetching } = usePostQuery(id!);
+  const { user } = useContext(AuthContext);
 
   if (isFetching) {
     return <Spinner />;
@@ -23,11 +27,12 @@ export default function PostDetail() {
               <h2 className="post__title">{post.title}</h2>
               <time className="post__date">{post.createAt}</time>
             </div>
-            {/* // 작성자인 경우에만 수정, 삭제 추가하기 */}
-            <div className="post__buttons">
-              <button className="post__button post__button--modify">수정</button>
-              <button className="post__button post__button--delete">삭제</button>
-            </div>
+            {user?.email === post.author && (
+              <div className="post__buttons">
+                <button className="post__button post__button--modify">수정</button>
+                <button className="post__button post__button--delete">삭제</button>
+              </div>
+            )}
           </div>
 
           <div className="post__profile">
