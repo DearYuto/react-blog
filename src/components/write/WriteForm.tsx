@@ -9,9 +9,11 @@ import { AuthContext } from '@/store/contextAPI/AuthProvider';
 
 import { PATH } from '../router/constants/path';
 
+import { useMyForm } from '@/hooks/form/useMyForm';
+
 export default function WriteForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formInputs, setFormInputs] = useState({
+  const { formInputs, onChangeFormInput } = useMyForm({
     title: '',
     content: '',
   });
@@ -19,15 +21,6 @@ export default function WriteForm() {
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
-
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormInputs((prev) => {
-      return {
-        ...prev,
-        [e.target.id]: e.target.value,
-      };
-    });
-  };
 
   const isEmptyInput = (target: 'title' | 'content') => {
     if (target === 'title') {
@@ -80,7 +73,7 @@ export default function WriteForm() {
       </label>
       <textarea
         className="textarea write__textarea--title"
-        onChange={onChangeInput}
+        onChange={onChangeFormInput}
         id="title"
         placeholder="제목을 입력해주세요."
       />
@@ -90,7 +83,7 @@ export default function WriteForm() {
       </label>
       <textarea
         className="textarea write__textarea"
-        onChange={onChangeInput}
+        onChange={onChangeFormInput}
         id="content"
         placeholder="내용을 입력해주세요."
       />
