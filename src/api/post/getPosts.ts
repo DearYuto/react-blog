@@ -1,5 +1,5 @@
 import { db } from '@/services/firebase/firebaseConfig';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
 export interface IPost {
   author: string;
@@ -10,7 +10,8 @@ export interface IPost {
 
 export const getPosts = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, 'posts'));
+    const postQuery = query(collection(db, 'posts'), orderBy('timeStamp', 'desc'));
+    const querySnapshot = await getDocs(postQuery);
 
     return querySnapshot.docs.map((doc) => {
       return {

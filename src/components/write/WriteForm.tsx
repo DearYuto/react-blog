@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 import { db } from '@/services/firebase/firebaseConfig';
 
@@ -56,6 +56,7 @@ export default function WriteForm() {
     try {
       await addDoc(collection(db, 'posts'), {
         ...formInputs,
+        timeStamp: serverTimestamp(),
         createAt: new Date().toLocaleDateString(),
         author: user?.email,
       });
