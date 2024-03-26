@@ -12,6 +12,9 @@ import { PATH } from '../router/constants/path';
 import { useMyForm } from '@/hooks/form/useMyForm';
 import { isEmpty } from '@/utils/isEmpty';
 
+import TextInput from '../textInput';
+import Button from '../button';
+
 export default function WriteForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { formInputs, onChangeFormInput } = useMyForm({
@@ -58,29 +61,23 @@ export default function WriteForm() {
 
   return (
     <form className="write__form" onSubmit={onSubmit}>
-      <label className="visually-hidden" htmlFor="title">
-        제목
-      </label>
-      <textarea
-        className="textarea write__textarea--title"
+      <TextInput
+        label="제목"
+        labelFor="title"
         onChange={onChangeFormInput}
-        id="title"
         placeholder="제목을 입력해주세요."
       />
 
-      <label className="visually-hidden" htmlFor="content">
-        내용
-      </label>
-      <textarea
-        className="textarea write__textarea"
+      <TextInput
+        label="내용"
+        labelFor="content"
         onChange={onChangeFormInput}
-        id="content"
         placeholder="내용을 입력해주세요."
       />
 
-      <button disabled={isSubmitting} type="submit" className="button--primary">
+      <Button disabled={isSubmitting} type="submit">
         발행
-      </button>
+      </Button>
     </form>
   );
 }
