@@ -2,6 +2,7 @@ import { db } from '@/services/firebase/firebaseConfig';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
 export interface IPost {
+  id: string;
   author: string;
   content: string;
   createAt: string;

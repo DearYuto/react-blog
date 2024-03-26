@@ -1,16 +1,23 @@
 import { useContext } from 'react';
 import { IPost } from '@/api/post/getPosts';
 import { AuthContext } from '@/store/contextAPI/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '@/components/router/constants/path';
 
 type Props = {
   onClick?: () => void;
 } & IPost;
 
-export default function Post({ title, content, author, createAt, onClick }: Props) {
+export default function Post({ id, title, content, author, createAt, onClick }: Props) {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
+
+    if (!id) return;
+
+    navigate(`${PATH.write}/${id}`);
   };
 
   const onDelete = (e: React.MouseEvent) => {

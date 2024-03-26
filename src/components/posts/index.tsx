@@ -19,6 +19,7 @@ export default function Posts({ posts }: Props) {
         return (
           <Post
             key={post.id}
+            id={post.id}
             title={post.title}
             content={post.content}
             author={post.author}
