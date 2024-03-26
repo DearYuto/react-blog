@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { IPost } from '@/api/post/getPosts';
 
@@ -11,18 +11,22 @@ type Props = {
 };
 
 export default function Posts({ posts }: Props) {
+  const navigate = useNavigate();
+
   return (
     <>
       {posts.map((post) => {
         return (
-          <Link key={post.id} to={`${PATH.posts}/${post.id}`}>
-            <Post
-              title={post.title}
-              content={post.content}
-              author={post.author}
-              createAt={post.createAt}
-            />
-          </Link>
+          <Post
+            key={post.id}
+            title={post.title}
+            content={post.content}
+            author={post.author}
+            createAt={post.createAt}
+            onClick={() => {
+              navigate(`${PATH.posts}/${post.id}`);
+            }}
+          />
         );
       })}
     </>
