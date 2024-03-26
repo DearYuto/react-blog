@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-type Form = {
+export type Form = {
   [key: string]: string;
 };
 

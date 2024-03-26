@@ -57,7 +57,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: PATH.write,
-            element: <WritePage />,
+            element: <WritePage mode="create" />,
+          },
+          {
+            path: PATH.modify,
+            element: <WritePage mode="modify" />,
           },
           {
             path: PATH.mypage,

@@ -1,9 +1,13 @@
 import WriteForm from '@/components/write/WriteForm';
 
-export default function WritePage() {
+export type WriteModeType = {
+  mode: 'modify' | 'create';
+};
+
+export default function WritePage({ mode = 'create' }: WriteModeType) {
   return (
     <>
-      <WriteForm />
+      <WriteForm mode={mode} />
     </>
   );
 }
