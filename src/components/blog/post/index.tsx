@@ -9,6 +9,14 @@ type Props = {
 export default function Post({ title, content, author, createAt, onClick }: Props) {
   const { user } = useContext(AuthContext);
 
+  const onEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  const onDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
     <article className="post" onClick={onClick}>
       <header>
@@ -33,8 +41,12 @@ export default function Post({ title, content, author, createAt, onClick }: Prop
 
           {author === user?.email && (
             <div className="post__buttons">
-              <button className="post__button post__button--modify">수정</button>
-              <button className="post__button post__button--delete">삭제</button>
+              <button onClick={onEdit} className="post__button post__button--modify">
+                수정
+              </button>
+              <button onClick={onDelete} className="post__button post__button--delete">
+                삭제
+              </button>
             </div>
           )}
         </div>
