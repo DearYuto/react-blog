@@ -12,5 +12,5 @@ export const useMyForm = (initialState: Form) => {
     setFormInputs((prev) => ({ ...prev, [id]: value }));
   };
 
-  return { formInputs, onChangeFormInput };
+  return { formInputs, setFormInputs, onChangeFormInput };
 };
