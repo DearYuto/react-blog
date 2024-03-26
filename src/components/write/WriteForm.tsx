@@ -1,53 +1,64 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-
-import { db } from '@/services/firebase/firebaseConfig';
 
 import { AuthContext } from '@/store/contextAPI/AuthProvider';
 
 import { PATH } from '../router/constants/path';
 
 import { useMyForm } from '@/hooks/form/useMyForm';
-import { isEmpty } from '@/utils/isEmpty';
+import { usePostQuery } from '@/hooks/queries/usePostQuery';
+import { validateFormInputs } from '@/utils/form/validateFormInputs';
+import { createSubmitStrategy, modifySubmitStrategy } from './strategies';
+
+import type { WriteModeType } from '@/pages/write';
 
 import TextInput from '../textInput';
 import Button from '../button';
+import Spinner from '../loading/Spinner';
 
-export default function WriteForm() {
+const initFormState = {
+  title: '',
+  content: '',
+};
+
+type Props = WriteModeType;
+
+export default function WriteForm({ mode = 'create' }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { formInputs, onChangeFormInput } = useMyForm({
-    title: '',
-    content: '',
-  });
-
+  const { formInputs, setFormInputs, onChangeFormInput } = useMyForm(initFormState);
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
+  // modify 모드일 때
+  const strategy = mode === 'create' ? createSubmitStrategy : modifySubmitStrategy;
+  const { id } = useParams();
+  const { post, isFetching } = usePostQuery(id!);
+
+  useEffect(() => {
+    setFormInputs({
+      title: post ? post.title : '',
+      content: post ? post.content : '',
+    });
+  }, [post, setFormInputs]);
+
+  if (isFetching) {
+    return <Spinner />;
+  }
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (isEmpty(formInputs.title)) {
-      return toast.error('제목을 입력해주세요.');
-    }
-
-    if (isEmpty(formInputs.content)) {
-      return toast.error('내용을 입력해주세요.');
-    }
+    if (!validateFormInputs(formInputs)) return;
 
     setIsSubmitting(true);
 
     try {
-      await addDoc(collection(db, 'posts'), {
-        ...formInputs,
-        timeStamp: serverTimestamp(),
-        createAt: new Date().toLocaleDateString(),
-        author: user?.email,
-      });
+      await strategy.submit(formInputs, user!, id!);
 
-      toast.success('게시글이 등록되었습니다.');
+      const message = mode === 'create' ? '게시글이 등록되었습니다.' : '게시글이 수정되었습니다.';
+      toast.success(message);
 
       navigate(PATH.root);
     } catch (err) {
@@ -62,6 +73,7 @@ export default function WriteForm() {
   return (
     <form className="write__form" onSubmit={onSubmit}>
       <TextInput
+        value={formInputs.title}
         label="제목"
         labelFor="title"
         onChange={onChangeFormInput}
@@ -70,6 +82,7 @@ export default function WriteForm() {
 
       <TextInput
         label="내용"
+        value={formInputs.content}
         labelFor="content"
         onChange={onChangeFormInput}
         placeholder="내용을 입력해주세요."
