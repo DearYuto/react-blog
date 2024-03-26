@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -29,6 +29,8 @@ export default function WriteForm({ mode = 'create' }: Props) {
   const { formInputs, setFormInputs, onChangeFormInput } = useMyForm(initFormState);
   const { user } = useContext(AuthContext);
 
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
   const navigate = useNavigate();
 
   // modify 모드일 때
@@ -37,6 +39,12 @@ export default function WriteForm({ mode = 'create' }: Props) {
   const { post, isFetching } = usePostQuery(id!);
 
   useEffect(() => {
+    if (inputRef.current) {
+      const length = inputRef.current.value.length;
+      inputRef.current.focus();
+      inputRef.current.setSelectionRange(length, length);
+    }
+
     setFormInputs({
       title: post ? post.title : '',
       content: post ? post.content : '',
@@ -73,6 +81,7 @@ export default function WriteForm({ mode = 'create' }: Props) {
   return (
     <form className="write__form" onSubmit={onSubmit}>
       <TextInput
+        ref={inputRef}
         value={formInputs.title}
         label="제목"
         labelFor="title"

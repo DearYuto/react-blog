@@ -1,3 +1,5 @@
+import { forwardRef, ForwardRefRenderFunction } from 'react';
+
 type Props = {
   labelFor: string;
   label: string;
@@ -5,14 +7,17 @@ type Props = {
   placeholder?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
-
-export default function TextInput({ label, value, labelFor, placeholder, onChange }: Props) {
+const TextInputInner: ForwardRefRenderFunction<HTMLTextAreaElement, Props> = (
+  { label, value, labelFor, placeholder, onChange },
+  ref
+) => {
   return (
     <>
       <label className="visually-hidden" htmlFor={labelFor}>
         {label}
       </label>
       <textarea
+        ref={ref}
         value={value}
         className={`textarea write__textarea--${labelFor}`}
         onChange={onChange}
@@ -21,4 +26,7 @@ export default function TextInput({ label, value, labelFor, placeholder, onChang
       />
     </>
   );
-}
+};
+
+const TextInput = forwardRef(TextInputInner);
+export default TextInput;
