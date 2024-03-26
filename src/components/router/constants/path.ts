@@ -12,4 +12,5 @@ export const PATH = {
   post: `${basePath.posts}/:id`,
   login: `${basePath.auth}/login`,
   join: `${basePath.auth}/join`,
+  modify: `${basePath.write}/:id`,
 } as const;
