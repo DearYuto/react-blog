@@ -16,6 +16,7 @@ import type { WriteModeType } from '@/pages/write';
 import TextInput from '../textInput';
 import Button from '../button';
 import Spinner from '../loading/Spinner';
+import NotFoundPage from '@/pages/notfound';
 
 const initFormState = {
   title: '',
@@ -36,7 +37,7 @@ export default function WriteForm({ mode = 'create' }: Props) {
   // modify 모드일 때
   const strategy = mode === 'create' ? createSubmitStrategy : modifySubmitStrategy;
   const { id } = useParams();
-  const { post, isFetching } = usePostQuery(id!);
+  const { post, isError, isFetching } = usePostQuery(id!);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -53,6 +54,11 @@ export default function WriteForm({ mode = 'create' }: Props) {
 
   if (isFetching) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    // TODO 잘못된 path 진입 시 어떻게 처리할까?
+    return <NotFoundPage />;
   }
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
