@@ -6,11 +6,17 @@ import Spinner from '@/components/loading/Spinner';
 import { usePostQuery } from '@/hooks/queries/usePostQuery';
 
 import { AuthContext } from '@/store/contextAPI/AuthProvider';
+import NotFoundPage from '@/pages/notfound';
 
 export default function PostDetail() {
   const { id } = useParams();
-  const { post, isFetching } = usePostQuery(id!);
+  const { post, isFetching, isError } = usePostQuery(id!);
   const { user } = useContext(AuthContext);
+
+  if (isError) {
+    // TODO 잘못된 경로(404) 외에 다른 에러일 경우는 어떻게 처리 ?
+    return <NotFoundPage />;
+  }
 
   if (isFetching) {
     return <Spinner />;
