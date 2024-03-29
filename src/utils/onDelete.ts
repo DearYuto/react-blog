@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { deletePost } from './firebase/deletePost/deletePost';
 import { PATH } from '@/components/router/constants/path';
 import { toast } from 'react-toastify';
+import { usePostMutation } from '@/hooks/mutations/usePostMutation';
 
 export const useDeletePost = () => {
   const navigate = useNavigate();
+  const { mutate } = usePostMutation();
 
   const onDelete = (id: string) => async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -13,7 +14,7 @@ export const useDeletePost = () => {
 
     try {
       if (isDeleteConfirmed) {
-        await deletePost(id);
+        mutate(id);
 
         navigate(PATH.root);
 
