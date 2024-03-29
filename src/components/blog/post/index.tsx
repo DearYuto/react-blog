@@ -1,8 +1,13 @@
 import { useContext } from 'react';
-import { IPost } from '@/api/post/getPosts';
-import { AuthContext } from '@/store/contextAPI/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+
 import { PATH } from '@/components/router/constants/path';
+
+import { IPost } from '@/api/post/getPosts';
+
+import { AuthContext } from '@/store/contextAPI/AuthProvider';
+
+import { useDeletePost } from '@/utils/onDelete';
 
 type Props = {
   onClick?: () => void;
@@ -12,16 +17,14 @@ export default function Post({ id, title, content, author, createAt, onClick }: 
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const { onDelete } = useDeletePost();
+
   const onEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
 
     if (!id) return;
 
     navigate(`${PATH.write}/${id}`);
-  };
-
-  const onDelete = (e: React.MouseEvent) => {
-    e.stopPropagation();
   };
 
   return (
@@ -51,7 +54,8 @@ export default function Post({ id, title, content, author, createAt, onClick }: 
               <button onClick={onEdit} className="post__button post__button--modify">
                 수정
               </button>
-              <button onClick={onDelete} className="post__button post__button--delete">
+              {/* // TODO Delete 시 mutation 처리 ? */}
+              <button onClick={onDelete(id)} className="post__button post__button--delete">
                 삭제
               </button>
             </div>
