@@ -9,7 +9,7 @@ import { PATH } from '../router/constants/path';
 import { useMyForm } from '@/hooks/form/useMyForm';
 import { usePostQuery } from '@/hooks/queries/usePostQuery';
 import { validateFormInputs } from '@/utils/validation/validateFormInputs';
-import { createSubmitStrategy, modifySubmitStrategy } from '../../utils/formSubmit';
+import { createSubmitStrategy, modifySubmitStrategy } from '../../utils/firebase/submitPost';
 
 import type { WriteModeType } from '@/pages/write';
 
