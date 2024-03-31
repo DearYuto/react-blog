@@ -1,10 +1,15 @@
-export const postMenuItem = [
+export type TabLabel = 'new' | 'popular';
+
+export const postMenuItem: {
+  id: number;
+  title: TabLabel;
+}[] = [
   {
     id: 0,
-    title: '최신',
+    title: 'new',
   },
   {
     id: 1,
-    title: '인기',
+    title: 'popular',
   },
 ] as const;

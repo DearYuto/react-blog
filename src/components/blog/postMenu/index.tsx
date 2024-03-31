@@ -1,20 +1,19 @@
-import { useState } from 'react';
-import { postMenuItem } from './constants/menuItems';
+import { postMenuItem, TabLabel } from './constants/menuItems';
 
-export default function PostMenu() {
-  const [isActive, setIsActive] = useState(0);
-
-  const onClickMenuItem = (id: number) => () => {
-    setIsActive(id);
-  };
-
+type Props = {
+  activeTab: TabLabel;
+  onClick: (label: TabLabel) => () => void;
+};
+export default function PostMenu({ activeTab, onClick }: Props) {
   return (
     <ul className="post-menu">
       {postMenuItem.map((menu) => {
         return (
           <li
-            onClick={onClickMenuItem(menu.id)}
-            className={`post-menu__item ${isActive === menu.id ? 'post-menu__item--active' : ''}`}
+            onClick={onClick(menu.title)}
+            className={`post-menu__item ${
+              activeTab === menu.title ? 'post-menu__item--active' : ''
+            }`}
             key={menu.id}
           >
             {menu.title}
