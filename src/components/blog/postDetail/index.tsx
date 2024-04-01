@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Spinner from '@/components/loading/Spinner';
 
@@ -8,11 +8,14 @@ import { useDeletePost } from '@/utils/onDelete';
 
 import { AuthContext } from '@/store/contextAPI/AuthProvider';
 import NotFoundPage from '@/pages/notfound';
+import { onEdit } from '@/utils/onEdit';
 
 export default function PostDetail() {
   const { id } = useParams();
   const { post, isFetching, isError } = usePostQuery(id!);
   const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const { onDelete } = useDeletePost();
 
@@ -38,7 +41,12 @@ export default function PostDetail() {
             </div>
             {user?.email === post.author && (
               <div className="post__buttons">
-                <button className="post__button post__button--modify">수정</button>
+                <button
+                  onClick={onEdit(id!, navigate)}
+                  className="post__button post__button--modify"
+                >
+                  수정
+                </button>
                 <button onClick={onDelete(id!)} className="post__button post__button--delete">
                   삭제
                 </button>

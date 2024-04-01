@@ -1,31 +1,31 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { PATH } from '@/components/router/constants/path';
+import { HeartFilledIcon } from '@radix-ui/react-icons';
 
 import { IPost } from '@/api/post/getPosts';
 
 import { AuthContext } from '@/store/contextAPI/AuthProvider';
 
 import { useDeletePost } from '@/utils/onDelete';
+import { onEdit } from '@/utils/onEdit';
 
 type Props = {
   onClick?: () => void;
 } & IPost;
 
-export default function Post({ id, title, content, author, createAt, onClick }: Props) {
+export default function Post({
+  id,
+  title,
+  content,
+  author,
+  createAt,
+  onClick,
+  likeCount = 0,
+}: Props) {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const { onDelete } = useDeletePost();
-
-  const onEdit = (e: React.MouseEvent) => {
-    e.stopPropagation();
-
-    if (!id) return;
-
-    navigate(`${PATH.write}/${id}`);
-  };
 
   return (
     <article className="post" onClick={onClick}>
@@ -49,17 +49,27 @@ export default function Post({ id, title, content, author, createAt, onClick }: 
             <span className="post__author">{author}</span>
           </div>
 
-          {author === user?.email && (
-            <div className="post__buttons">
-              <button onClick={onEdit} className="post__button post__button--modify">
-                수정
-              </button>
-              {/* // TODO Delete 시 mutation 처리 ? */}
-              <button onClick={onDelete(id)} className="post__button post__button--delete">
-                삭제
-              </button>
+          <div>
+            <div className="post__like-display">
+              <HeartFilledIcon />
+              <span>{likeCount}</span>
             </div>
-          )}
+
+            {author === user?.email && (
+              <div className="post__buttons">
+                <button
+                  onClick={onEdit(id, navigate)}
+                  className="post__button post__button--modify"
+                >
+                  수정
+                </button>
+                {/* // TODO Delete 시 mutation 처리 ? */}
+                <button onClick={onDelete(id)} className="post__button post__button--delete">
+                  삭제
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </article>
