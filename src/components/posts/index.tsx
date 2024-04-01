@@ -24,6 +24,7 @@ export default function Posts({ posts }: Props) {
             content={post.content}
             author={post.author}
             createAt={post.createAt}
+            likeCount={post.likeCount}
             onClick={() => {
               navigate(`${PATH.posts}/${post.id}`);
             }}

@@ -69,7 +69,7 @@ export default function WriteForm({ mode = 'create' }: Props) {
     setIsSubmitting(true);
 
     try {
-      await strategy.submit(formInputs, user!, id!);
+      await strategy.submit(formInputs, user!, id!, post?.likeCount);
 
       const message = mode === 'create' ? '게시글이 등록되었습니다.' : '게시글이 수정되었습니다.';
       toast.success(message);

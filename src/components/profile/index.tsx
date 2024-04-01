@@ -37,6 +37,10 @@ export default function Profile() {
           로그아웃
         </Link>
       </footer>
+
+      <div>
+        <h3>내가 작성한 글</h3>
+      </div>
     </section>
   );
 }

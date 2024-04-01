@@ -62,6 +62,7 @@
     border-radius: map-get($border-radius, 'xs');
     padding: map-get($padding, 'xxs') map-get($padding, 'md');
     background: none;
+    margin-top: map-get($margin, 'xs');
 
     &--delete {
       color: $red-500;
@@ -92,5 +93,17 @@
 
   &__author {
     font-size: map-get($font-sizes, 'xs');
+  }
+
+  &__like-display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: map-get($gap, 'sm');
+
+    font-size: map-get($font-sizes, 'xs');
+
+    margin-right: map-get($margin, 'md');
+    margin-bottom: map-get($margin, 'sm');
   }
 }
