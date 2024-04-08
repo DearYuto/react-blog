@@ -1,3 +1,5 @@
+'use client';
+
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getAuth, signOut } from 'firebase/auth';
@@ -5,9 +7,15 @@ import { getAuth, signOut } from 'firebase/auth';
 import { PATH } from '../router/constants/path';
 
 import { firebaseApp } from '@/services/firebase/firebaseConfig';
+import { useMyPostsQuery } from '@/hooks/queries/useMyPostsQuery';
+import Spinner from '../loading/Spinner';
+
+import PreviewPosts from '../previewPosts';
 
 export default function Profile() {
   const auth = getAuth(firebaseApp);
+
+  const { data: myPosts, isFetching } = useMyPostsQuery(auth);
 
   const onClickLogout = async () => {
     try {
@@ -38,9 +46,7 @@ export default function Profile() {
         </Link>
       </footer>
 
-      <div>
-        <h3>내가 작성한 글</h3>
-      </div>
+      <>{isFetching ? <Spinner /> : <PreviewPosts posts={myPosts ?? []} />}</>
     </section>
   );
 }
