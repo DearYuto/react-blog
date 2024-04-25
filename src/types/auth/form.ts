@@ -5,9 +5,11 @@ interface IPattern {
   message: string;
 }
 
+type InputType = 'email' | 'password' | 'rePassword';
+
 export type FormInputType = {
   id: number;
-  name: 'email' | 'password' | 'rePassword';
+  name: InputType;
   label: string;
   type: string;
   autoComplete?: HTMLInputAutoCompleteAttribute;

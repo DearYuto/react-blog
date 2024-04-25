@@ -12,7 +12,7 @@ interface ThemeState {
 export const ThemeContext = createContext<ThemeState>({
   theme: 'light',
   setTheme: () => {
-    console.warn('setThme function이 구현되지 않았어요.');
+    console.warn('setTheme function이 구현되지 않았어요.');
   },
 });
 
