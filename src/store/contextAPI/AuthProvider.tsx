@@ -1,6 +1,6 @@
-import { useAuth } from '@/hooks/auth/useAuth';
-import { User } from 'firebase/auth';
 import React, { createContext } from 'react';
+import { User } from 'firebase/auth';
+import { useAuth } from '@/hooks/auth/useAuth';
 
 export const AuthContext = createContext({
   user: null as User | null,
