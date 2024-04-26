@@ -1,20 +1,7 @@
-// TODO 파일 분리
+import { useState } from 'react';
 
-import { createContext, Dispatch, useState } from 'react';
-
-type Theme = 'light' | 'dark';
-
-interface ThemeState {
-  theme: Theme;
-  setTheme: Dispatch<React.SetStateAction<Theme>>;
-}
-
-export const ThemeContext = createContext<ThemeState>({
-  theme: 'light',
-  setTheme: () => {
-    console.warn('setTheme function이 구현되지 않았어요.');
-  },
-});
+import { Theme } from './types/themeTypes';
+import { ThemeContext } from './ThemeContext';
 
 interface Props {
   children: React.ReactNode;
