@@ -10,6 +10,7 @@ import Empty from '@/components/empty';
 
 import { firebaseApp } from '@/services/firebase/firebaseConfig';
 import { toast } from 'react-toastify';
+import { isEmptyInput } from '@/utils/isEmpty';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -30,7 +31,11 @@ export default function LoginForm() {
   const onSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (isEmpty()) return;
+    if (
+      isEmptyInput(email, '이메일을 입력해주세요.') ||
+      isEmptyInput(password, '비밀번호를 입력해주세요.')
+    )
+      return;
 
     try {
       const auth = getAuth(firebaseApp);
@@ -40,21 +45,6 @@ export default function LoginForm() {
       toast.error('이메일/비밀번호를 다시 확인해주세요.');
       console.error(err);
     }
-  };
-
-  const isEmpty = () => {
-    // TODO SRP 리팩토링
-    if (!email) {
-      toast.error('이메일을 입력해주세요.');
-      return true;
-    }
-
-    if (!password) {
-      toast.error('비밀번호를 입력해주세요.');
-      return true;
-    }
-
-    return false;
   };
 
   return (
