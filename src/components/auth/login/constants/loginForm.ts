@@ -1,3 +1,4 @@
+import { MESSAGES } from '@/constants/common/messages';
 import { FormInputType } from '@/types/auth/form';
 
 export const LOGIN_FORM: FormInputType[] = [
@@ -6,7 +7,7 @@ export const LOGIN_FORM: FormInputType[] = [
     name: 'email',
     label: '이메일',
     type: 'email',
-    placeholder: '이메일을 입력해주세요.',
+    placeholder: MESSAGES.REQUIRED_EMAIL,
     errorMessage: '이메일 형식으로 입력해주세요.',
     autoComplete: 'email',
 
@@ -20,7 +21,7 @@ export const LOGIN_FORM: FormInputType[] = [
     name: 'password',
     label: '비밀번호',
     type: 'password',
-    placeholder: '비밀번호를 입력해주세요.',
+    placeholder: MESSAGES.REQUIRED_PASSWORD,
     errorMessage: '비밀번호는 8자리 이상(특수문자, 대문자, 숫자)으로 입력해주세요.',
     autoComplete: 'current-password',
 

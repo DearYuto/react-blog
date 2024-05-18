@@ -5,13 +5,15 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import '@toast-ui/editor/dist/toastui-editor.css';
 import 'tui-color-picker/dist/tui-color-picker.css';
 
+import { MESSAGES } from '@/constants/common/messages';
+
 export default function PostEditor() {
   return (
     <Editor
       usageStatistics={false}
       useCommandShortcut={false}
       initialValue=""
-      placeholder="내용을 입력해주세요."
+      placeholder={MESSAGES.REQUIRED_CONTENTS}
       previewStyle="vertical"
       initialEditType="wysiwyg"
       plugins={[colorSyntax]}

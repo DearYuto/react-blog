@@ -9,6 +9,7 @@ import { useDeletePost } from '@/utils/onDelete';
 import { AuthContext } from '@/store/contextAPI/AuthProvider';
 import NotFoundPage from '@/pages/notfound';
 import { onEdit } from '@/utils/onEdit';
+import { COMMON } from '@/constants/common/common';
 
 export default function PostDetail() {
   const { id } = useParams();
@@ -45,10 +46,10 @@ export default function PostDetail() {
                   onClick={onEdit(id!, navigate)}
                   className="post__button post__button--modify"
                 >
-                  수정
+                  {COMMON.MODIFICATION}
                 </button>
                 <button onClick={onDelete(id!)} className="post__button post__button--delete">
-                  삭제
+                  {COMMON.DELETE}
                 </button>
               </div>
             )}

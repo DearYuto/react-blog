@@ -8,6 +8,7 @@ import LabelInput from '@/components/labelInput';
 
 import { firebaseApp } from '@/services/firebase/firebaseConfig';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { COMMON } from '@/constants/common/common';
 
 interface IFormInput {
   email: string;
@@ -42,7 +43,7 @@ export default function JoinForm() {
 
   return (
     <div className="join">
-      <h2 className="join__title">회원가입</h2>
+      <h2 className="join__title">{COMMON.JOIN_TITLE}</h2>
       <form className="join__form" onSubmit={handleSubmit(onSubmit)}>
         {JOIN_FORM.map((item) => {
           return (

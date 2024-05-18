@@ -11,6 +11,8 @@ import Empty from '@/components/empty';
 import { firebaseApp } from '@/services/firebase/firebaseConfig';
 import { toast } from 'react-toastify';
 import { isEmptyInput } from '@/utils/isEmpty';
+import { ERROR_MESSAGES, MESSAGES } from '@/constants/common/messages';
+import { COMMON } from '@/constants/common/common';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -32,17 +34,17 @@ export default function LoginForm() {
     e.preventDefault();
 
     if (
-      isEmptyInput(email, '이메일을 입력해주세요.') ||
-      isEmptyInput(password, '비밀번호를 입력해주세요.')
+      isEmptyInput(email, MESSAGES.REQUIRED_EMAIL) ||
+      isEmptyInput(password, MESSAGES.REQUIRED_PASSWORD)
     )
       return;
 
     try {
       const auth = getAuth(firebaseApp);
       await signInWithEmailAndPassword(auth, email, password);
-      toast.success('유로그에 오신 것을 환영합니다.');
+      toast.success(MESSAGES.WELCOME);
     } catch (err) {
-      toast.error('이메일/비밀번호를 다시 확인해주세요.');
+      toast.error(ERROR_MESSAGES.CHECK_USER_INFO);
       console.error(err);
     }
   };
@@ -69,14 +71,14 @@ export default function LoginForm() {
         })}
         <Empty style={{ height: '20px' }} />
         <button type="submit" className="login__button login__button--submit">
-          로그인
+          {COMMON.LOGIN_TITLE}
         </button>
       </form>
 
       <div className="login__footer">
-        <span className="login__footer-text">아직 회원이 아니라면?</span>
+        <span className="login__footer-text">{MESSAGES.NOT_A_MEMBER}</span>
         <Link className="login__footer-text" to={PATH.join}>
-          회원가입
+          {COMMON.JOIN_TITLE}
         </Link>
       </div>
     </div>

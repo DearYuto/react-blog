@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '@/components/router/constants/path';
 import { toast } from 'react-toastify';
 import { usePostMutation } from '@/hooks/mutations/usePostMutation';
+import { ERROR_MESSAGES, MESSAGES } from '@/constants/common/messages';
 
 export const useDeletePost = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export const useDeletePost = () => {
   const onDelete = (id: string) => async (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    const isDeleteConfirmed = window.confirm('게시글을 삭제할까요?');
+    const isDeleteConfirmed = window.confirm(MESSAGES.CONFIRM_DELETE_POST);
 
     try {
       if (isDeleteConfirmed) {
@@ -18,11 +19,11 @@ export const useDeletePost = () => {
 
         navigate(PATH.root);
 
-        toast.success('게시글이 삭제되었습니다.');
+        toast.success(MESSAGES.DELETE_POST);
       }
     } catch (err) {
       console.error(err);
-      toast.error('게시글 삭제 실패! 잠시 후 다시 시도해주세요.');
+      toast.error(ERROR_MESSAGES.DELETE_POST_FAILURE);
     }
   };
 

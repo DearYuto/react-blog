@@ -5,6 +5,7 @@ import { NAV_ITEMS } from './constants/navItems';
 import { PATH } from '../router/constants/path';
 
 import { AuthContext } from '@/store/contextAPI/AuthProvider';
+import { COMMON } from '@/constants/common/common';
 
 export default function Header() {
   const { user, isLoading } = useContext(AuthContext);
@@ -19,7 +20,7 @@ export default function Header() {
         <h1 className="header__title">
           <Link className="header__logo" to={PATH.root}>
             <img src="/blog-logo.svg" alt="logo" />
-            <span aria-label="u-log">U-LOG</span>
+            <span aria-label="u-log">{COMMON.TITLE}</span>
           </Link>
         </h1>
         {isLoading ? (

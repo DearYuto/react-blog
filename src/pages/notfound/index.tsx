@@ -1,3 +1,5 @@
+import { MESSAGES } from '@/constants/common/messages';
+
 export default function NotFoundPage() {
-  return <div>존재하지 않는 페이지입니다.</div>;
+  return <div>{MESSAGES.NOT_FOUND_PAGE}</div>;
 }
