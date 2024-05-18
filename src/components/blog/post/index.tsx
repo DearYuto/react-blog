@@ -8,6 +8,7 @@ import { AuthContext } from '@/store/contextAPI/AuthProvider';
 
 import { useDeletePost } from '@/utils/onDelete';
 import { onEdit } from '@/utils/onEdit';
+import { COMMON } from '@/constants/common/common';
 
 type Props = {
   onClick?: () => void;
@@ -61,11 +62,11 @@ export default function Post({
                   onClick={onEdit(id, navigate)}
                   className="post__button post__button--modify"
                 >
-                  수정
+                  {COMMON.MODIFICATION}
                 </button>
                 {/* // TODO Delete 시 mutation 처리 ? */}
                 <button onClick={onDelete(id)} className="post__button post__button--delete">
-                  삭제
+                  {COMMON.DELETE}
                 </button>
               </div>
             )}

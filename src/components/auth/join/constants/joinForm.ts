@@ -1,5 +1,7 @@
 import { FormInputType } from '@/types/auth/form';
 import { LOGIN_FORM } from '../../login/constants/loginForm';
+import { ERROR_MESSAGES, MESSAGES } from '@/constants/common/messages';
+import { COMMON } from '@/constants/common/common';
 
 export const JOIN_FORM: FormInputType[] = [
   ...LOGIN_FORM,
@@ -7,7 +9,8 @@ export const JOIN_FORM: FormInputType[] = [
     id: 2,
     name: 'rePassword',
     type: 'password',
-    label: '비밀번호 확인',
-    errorMessage: '비밀번호가 일치하지 않습니다.',
+    label: COMMON.PASSWORD_CONFIRM,
+    placeholder: MESSAGES.PASSWORD_CONFIRM,
+    errorMessage: ERROR_MESSAGES.PASSWORD_MISMATCH,
   },
 ] as const;

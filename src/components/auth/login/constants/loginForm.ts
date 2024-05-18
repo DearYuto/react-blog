@@ -1,4 +1,4 @@
-import { MESSAGES } from '@/constants/common/messages';
+import { ERROR_MESSAGES, MESSAGES } from '@/constants/common/messages';
 import { FormInputType } from '@/types/auth/form';
 
 export const LOGIN_FORM: FormInputType[] = [
@@ -8,12 +8,12 @@ export const LOGIN_FORM: FormInputType[] = [
     label: '이메일',
     type: 'email',
     placeholder: MESSAGES.REQUIRED_EMAIL,
-    errorMessage: '이메일 형식으로 입력해주세요.',
+    errorMessage: ERROR_MESSAGES.INVALID_EMAIL_FORMAT,
     autoComplete: 'email',
 
     pattern: {
       value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      message: '이메일 형식으로 입력해주세요.',
+      message: ERROR_MESSAGES.INVALID_EMAIL_FORMAT,
     },
   },
   {
@@ -22,12 +22,12 @@ export const LOGIN_FORM: FormInputType[] = [
     label: '비밀번호',
     type: 'password',
     placeholder: MESSAGES.REQUIRED_PASSWORD,
-    errorMessage: '비밀번호는 8자리 이상(특수문자, 대문자, 숫자)으로 입력해주세요.',
+    errorMessage: ERROR_MESSAGES.INVALID_PASSWORD_FORMAT,
     autoComplete: 'current-password',
 
     pattern: {
       value: /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[A-Z])(?=.*[0-9]).{8,}$/,
-      message: '비밀번호는 8자리 이상(특수문자, 대문자, 숫자)으로 입력해주세요.',
+      message: ERROR_MESSAGES.INVALID_PASSWORD_FORMAT,
     },
   },
 ] as const;

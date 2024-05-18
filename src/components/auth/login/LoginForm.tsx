@@ -51,7 +51,7 @@ export default function LoginForm() {
 
   return (
     <div className="login">
-      <h2>로그인</h2>
+      <h2>{COMMON.LOGIN_TITLE}</h2>
       <form onSubmit={onSubmitForm} className="login__form" method="POST">
         {LOGIN_FORM.map((loginItem) => {
           return (

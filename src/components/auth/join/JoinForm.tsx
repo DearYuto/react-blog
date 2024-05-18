@@ -8,7 +8,9 @@ import LabelInput from '@/components/labelInput';
 
 import { firebaseApp } from '@/services/firebase/firebaseConfig';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+
 import { COMMON } from '@/constants/common/common';
+import { ERROR_MESSAGES, MESSAGES } from '@/constants/common/messages';
 
 interface IFormInput {
   email: string;
@@ -29,10 +31,10 @@ export default function JoinForm() {
       const auth = getAuth(firebaseApp);
       await createUserWithEmailAndPassword(auth, data.email, data.password);
 
-      toast.success('회원이 되신 것을 환영합니다.');
+      toast.success(MESSAGES.USER_WELCOME);
     } catch (err) {
       console.error(err);
-      toast.error('이미 존재하는 회원입니다.');
+      toast.error(ERROR_MESSAGES.USER_ALREADY_EXISTS);
     }
   };
 
@@ -87,7 +89,7 @@ export default function JoinForm() {
         })}
 
         <button className="join__button join__button--submit" disabled={isSubmitting} type="submit">
-          회원가입
+          {COMMON.JOIN_TITLE}
         </button>
       </form>
     </div>

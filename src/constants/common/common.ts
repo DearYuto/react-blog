@@ -6,4 +6,5 @@ export const COMMON = {
   MODIFICATION: '수정',
   DELETE: '삭제',
   CREATE_POST: '새 글 작성',
+  PASSWORD_CONFIRM: '비밀번호 확인',
 } as const;
