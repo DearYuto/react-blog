@@ -1,7 +1,7 @@
 export const MESSAGES = {
   REQUIRED_EMAIL: '이메일을 입력해주세요.',
   REQUIRED_PASSWORD: '비밀번호를 입력해주세요.',
-  REQUIRED_TITLE: '내용을 입력해주세요.',
+  REQUIRED_TITLE: '제목을 입력해주세요.',
   REQUIRED_CONTENTS: '내용을 입력해주세요.',
   PASSWORD_CONFIRM: '비밀번호를 다시 입력해주세요.',
 
@@ -11,6 +11,8 @@ export const MESSAGES = {
   WELCOME: '유로그에 오신 것을 환영합니다.',
   USER_WELCOME: '회원이 되신 것을 환영합니다.',
 
+  CREATE_POST: '게시글이 등록되었습니다.',
+  MODIFY_POST: '게시글이 수정되었습니다.',
   DELETE_POST: '게시글이 삭제되었습니다.',
 
   CONFIRM_DELETE_POST: '게시글을 삭제할까요?',
@@ -25,4 +27,6 @@ export const ERROR_MESSAGES = {
 
   INVALID_EMAIL_FORMAT: '이메일 형식으로 입력해주세요.',
   INVALID_PASSWORD_FORMAT: '비밀번호는 8자리 이상(특수문자, 대문자, 숫자)으로 입력해주세요.',
+
+  GENERAL_ERROR: '문제가 발생했어요. 잠시 후 다시 시도해주세요.',
 } as const;

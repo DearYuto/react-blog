@@ -17,11 +17,17 @@ import TextInput from '../textInput';
 import Button from '../button';
 import Spinner from '../loading/Spinner';
 import NotFoundPage from '@/pages/notfound';
+import { ERROR_MESSAGES, MESSAGES } from '@/constants/common/messages';
 
 const initFormState = {
   title: '',
   content: '',
 };
+
+const writeMode = {
+  create: createSubmitStrategy,
+  modify: modifySubmitStrategy,
+} as const;
 
 type Props = WriteModeType;
 
@@ -35,7 +41,7 @@ export default function WriteForm({ mode = 'create' }: Props) {
   const navigate = useNavigate();
 
   // modify 모드일 때
-  const strategy = mode === 'create' ? createSubmitStrategy : modifySubmitStrategy;
+  const strategy = writeMode[mode];
   const { id } = useParams();
   const { post, isError, isFetching } = usePostQuery(id!);
 
@@ -69,16 +75,17 @@ export default function WriteForm({ mode = 'create' }: Props) {
     setIsSubmitting(true);
 
     try {
-      await strategy.submit(formInputs, user!, id!, post?.likeCount);
+      // TODO 좋아요
+      await strategy.submit(formInputs, user!, id!);
 
-      const message = mode === 'create' ? '게시글이 등록되었습니다.' : '게시글이 수정되었습니다.';
+      const message = mode === 'create' ? MESSAGES.CREATE_POST : MESSAGES.MODIFY_POST;
       toast.success(message);
 
       navigate(PATH.root);
     } catch (err) {
       console.error(err);
 
-      toast.error('문제가 발생했어요. 잠시 후 다시 시도해주세요.');
+      toast.error(ERROR_MESSAGES.GENERAL_ERROR);
     } finally {
       setIsSubmitting(false);
     }
@@ -92,15 +99,21 @@ export default function WriteForm({ mode = 'create' }: Props) {
         label="제목"
         labelFor="title"
         onChange={onChangeFormInput}
-        placeholder="제목을 입력해주세요."
+        placeholder={MESSAGES.REQUIRED_TITLE}
       />
+
+      <label htmlFor="category">카테고리</label>
+      <select name="" id="category">
+        <option value="programming">Programming</option>
+        <option value="etc">Etc</option>
+      </select>
 
       <TextInput
         label="내용"
         value={formInputs.content}
         labelFor="content"
         onChange={onChangeFormInput}
-        placeholder="내용을 입력해주세요."
+        placeholder={MESSAGES.REQUIRED_CONTENTS}
       />
 
       <Button disabled={isSubmitting} type="submit">
