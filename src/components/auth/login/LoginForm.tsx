@@ -19,15 +19,8 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.id === 'email') {
-      setEmail(e.target.value);
-      return;
-    }
-
-    if (e.target.id === 'password') {
-      setPassword(e.target.value);
-      return;
-    }
+    if (e.target.id === 'email') setEmail(e.target.value);
+    else if (e.target.id === 'password') setPassword(e.target.value);
   };
 
   const onSubmitForm = async (e: FormEvent) => {
