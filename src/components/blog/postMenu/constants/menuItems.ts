@@ -3,7 +3,7 @@ export const TabLabels = {
   POPULAR: 'popular',
 } as const;
 
-type TabLabel = (typeof TabLabels)[keyof typeof TabLabels];
+export type TabLabel = (typeof TabLabels)[keyof typeof TabLabels];
 
 export const postMenuItem: {
   id: number;
