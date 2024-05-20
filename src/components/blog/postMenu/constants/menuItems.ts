@@ -1,4 +1,9 @@
-export type TabLabel = 'new' | 'popular';
+export const TabLabels = {
+  NEW: 'new',
+  POPULAR: 'popular',
+} as const;
+
+type TabLabel = (typeof TabLabels)[keyof typeof TabLabels];
 
 export const postMenuItem: {
   id: number;
@@ -6,10 +11,10 @@ export const postMenuItem: {
 }[] = [
   {
     id: 0,
-    title: 'new',
+    title: TabLabels.NEW,
   },
   {
     id: 1,
-    title: 'popular',
+    title: TabLabels.POPULAR,
   },
 ] as const;
